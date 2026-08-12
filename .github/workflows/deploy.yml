@@ -20,4 +20,8 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: public_html/
-        dangerous-clean-slate: false
+        protocol: ftp
+        port: 21
+        security: loose
+        timeout: 60000
+        
