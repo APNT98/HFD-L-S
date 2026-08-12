@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=8">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="img/logo.png">
 </head>
 <body>
 
@@ -26,8 +26,8 @@
         <nav>
             <a href="index.html" class="logo">
                 <div class="logo-container">
-                    <img src="logo.png" class="logo-icon" alt="HFD Logistic Icon">
-                    <img src="logo.png" class="logo-text" alt="HFD Logistic Service S.A.S.">
+                    <img src="img/logo.png" class="logo-icon" alt="HFD Logistic Icon">
+                    <img src="img/logo.png" class="logo-text" alt="HFD Logistic Service S.A.S.">
                 </div>
             </a>
             
@@ -87,7 +87,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <p><a href="mailto:HFDLOGISTICSERVICE@GMAIL.COM" style="color: inherit; text-decoration: none;">HFDLOGISTICSERVICE@GMAIL.COM</a></p>
+                            <p><a href="mailto:servicio@hfdlogisticservice.com.co" style="color: inherit; text-decoration: none;">servicio@hfdlogisticservice.com.co</a></p>
                         </div>
                     </div>
 
@@ -102,7 +102,8 @@
 
                 <div class="contact-form-wrapper reveal">
                     <h2>Envíenos un mensaje</h2>
-                    <form id="contact-form" novalidate>
+                    <form id="contact-form" novalidate action="https://formspree.io/f/mljrngqy" method="POST">
+    <input type="hidden" name="_subject" value="Nuevo mensaje de HFD Logistic Service">
                         <div class="form-group">
                             <label for="name">Nombre Completo</label>
                             <input type="text" id="name" name="name" placeholder="Ej. Juan Pérez" required>
@@ -124,10 +125,10 @@
             </div>
         </section>
 
-        <!-- Google Maps Placeholder -->
+        <!-- Google Maps Section -->
         <section class="map-section reveal">
             <div class="map-container">
-                <iframe src="https://www.google.com/maps?q=CALLE+26%23109-39+TC3+LOCAL+1+OFICINA+4+BOGOTA+D.C+COLOMBIA&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://maps.google.com/maps?q=4.6904787,-74.1352373&hl=es&z=16&output=embed" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" title="Ubicación HFD Logistic Service"></iframe>
             </div>
         </section>
     </main>
@@ -163,6 +164,6 @@
     </footer>
 
     <!-- Custom JS -->
-    <script src="script.js"></script>
+    <script src="script.js?v=8"></script>
 </body>
 </html>

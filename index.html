@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=8">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="img/logo.png">
 </head>
 <body>
 
@@ -26,8 +26,8 @@
         <nav>
             <a href="#" class="logo">
                 <div class="logo-container">
-                    <img src="logo.png" class="logo-icon" alt="HFD Logistic Icon">
-                    <img src="logo.png" class="logo-text" alt="HFD Logistic Service S.A.S.">
+                    <img src="img/logo.png" class="logo-icon" alt="HFD Logistic Icon">
+                    <img src="img/logo.png" class="logo-text" alt="HFD Logistic Service S.A.S.">
                 </div>
             </a>
             
@@ -61,7 +61,7 @@
                 <p>Servicios logísticos y operativos con compromiso, eficiencia y mejora continua.</p>
                 <div class="hero-btns">
                     <a href="servicios.html" class="btn btn-primary">Nuestros Servicios</a>
-                    <a href="empresa.html" class="btn" style="border: 2px solid var(--primary-color); margin-left: 10px;">Conocer Más</a>
+                    <a href="empresa.html" class="btn btn-outline" style="margin-left: 10px;">Conocer Más</a>
                 </div>
             </div>
         </section>
@@ -76,6 +76,31 @@
                 <div class="brief-text">
                     <p>Somos una empresa especializada en la prestación de servicios logísticos y operativos, con una trayectoria consolidada en el mercado. Trabajamos diariamente para ofrecer soluciones confiables y oportunas, garantizando altos estándares de calidad, seguridad y responsabilidad empresarial.</p>
                     <a href="empresa.html" class="text-link">Leer más sobre nosotros <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRM Section -->
+        <section class="trm-section reveal">
+            <div class="trm-container">
+                <div class="trm-card">
+                    <div class="trm-header">
+                        <div class="trm-badge"><i class="fas fa-chart-line"></i> Indicador Financiero</div>
+                        <h2>Tasa Representativa del Mercado</h2>
+                        <p class="trm-subtitle">Superintendencia Financiera de Colombia (TRM)</p>
+                    </div>
+                    <div class="trm-body">
+                        <div class="trm-value-container">
+                            <span id="trm-value" class="trm-value"><i class="fas fa-spinner fa-spin"></i> Cargando...</span>
+                        </div>
+                        <div class="trm-meta">
+                            <span class="trm-date-label"><i class="far fa-calendar-alt"></i> Fecha de Vigencia:</span>
+                            <span id="trm-date" class="trm-date">Cargando...</span>
+                        </div>
+                    </div>
+                    <div class="trm-footer">
+                        <small><i class="fas fa-sync-alt"></i> Actualización automática diaria • Datos Abiertos Colombia</small>
+                    </div>
                 </div>
             </div>
         </section>
@@ -112,6 +137,6 @@
     </footer>
 
     <!-- Custom JS -->
-    <script src="script.js"></script>
+    <script src="script.js?v=8"></script>
 </body>
 </html>

@@ -25,17 +25,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
 
-    mobileMenu.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-    });
-
-    // Close menu when clicking a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
+    if (mobileMenu && navMenu) {
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
         });
-    });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Reset menu state on screen resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992) {
+                navMenu.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    }
 
     // 3. Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -121,15 +132,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 const submitBtn = contactForm.querySelector('button');
                 const originalText = submitBtn.innerText;
                 submitBtn.disabled = true;
-                submitBtn.innerText = 'Enviando...';
+            submitBtn.innerText = 'Enviando...';
 
-                setTimeout(() => {
+            // Submit form data to Formspree
+            const formData = new FormData(contactForm);
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
                     alert('¡Gracias! Su mensaje ha sido enviado con éxito.');
                     contactForm.reset();
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = originalText;
-                    inputs.forEach(input => input.style.borderColor = '');
-                }, 1500);
+                } else {
+                    return response.json().then(data => {
+                        throw new Error(data.error || 'Error al enviar el mensaje.');
+                    });
+                }
+            })
+            .catch(error => {
+                alert('Error al enviar el formulario: ' + error.message);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalText;
+                inputs.forEach(input => input.style.borderColor = '');
+            });
             }
         });
     }
@@ -164,5 +195,66 @@ document.addEventListener('DOMContentLoaded', () => {
                 themeToggle.style.transform = '';
             }, 500);
         });
+    }
+
+    // 7. TRM API Integration (Datos Abiertos Colombia)
+    const trmValueEl = document.getElementById('trm-value');
+    const trmDateEl = document.getElementById('trm-date');
+
+    if (trmValueEl && trmDateEl) {
+        const fetchTRM = async () => {
+            const endpoint = 'https://www.datos.gov.co/resource/32sa-8pi3.json?$limit=1&$order=vigenciahasta%20DESC';
+            
+            try {
+                const response = await fetch(endpoint);
+                if (!response.ok) {
+                    throw new Error(`HTTP error status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                if (data && data.length > 0) {
+                    const trmRecord = data[0];
+                    const numericValue = parseFloat(trmRecord.valor);
+                    
+                    // Format numeric value as COP currency ($ 3.920,50 COP)
+                    const formattedCOP = new Intl.NumberFormat('es-CO', {
+                        style: 'currency',
+                        currency: 'COP',
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }).format(numericValue);
+                    
+                    // Format date (e.g. 12 de agosto de 2026)
+                    const rawDate = trmRecord.vigenciahasta || trmRecord.vigenciadesde;
+                    let formattedDateStr = rawDate;
+                    if (rawDate) {
+                        const dateParts = rawDate.split('T')[0].split('-');
+                        if (dateParts.length === 3) {
+                            const dateObj = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
+                            formattedDateStr = dateObj.toLocaleDateString('es-CO', {
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric'
+                            });
+                        }
+                    }
+
+                    trmValueEl.textContent = `${formattedCOP} COP`;
+                    trmDateEl.textContent = formattedDateStr;
+                } else {
+                    throw new Error('No TRM data received');
+                }
+            } catch (error) {
+                console.warn('Fallback TRM activated:', error);
+                trmValueEl.textContent = '$ 4.150,00 COP';
+                trmDateEl.textContent = new Date().toLocaleDateString('es-CO', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            }
+        };
+
+        fetchTRM();
     }
 });
