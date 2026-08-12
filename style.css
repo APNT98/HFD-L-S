@@ -233,6 +233,28 @@ header.scrolled .logo-container {
     color: #e2e8f0;
 }
 
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .hero-btns {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    .hero-btns .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 .btn {
     display: inline-block;
     padding: 1rem 2.5rem;
