@@ -404,7 +404,7 @@ footer {
     .nav-links {
         display: none;
         position: fixed;
-        top: 80px;
+        top: 100px;
         left: 0;
         width: 100%;
         background: var(--bg-card);

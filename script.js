@@ -29,6 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+
+            // On homepage, give header solid background when menu is open
+            if (isHomePage && window.scrollY <= 50) {
+                if (navMenu.classList.contains('active')) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
         });
 
         // Close menu when clicking a link
@@ -36,6 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                // Restore transparent header on homepage if at top
+                if (isHomePage && window.scrollY <= 50) {
+                    header.classList.remove('scrolled');
+                }
             });
         });
 
@@ -44,6 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.innerWidth > 992) {
                 navMenu.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                // Restore transparent header on homepage if at top
+                if (isHomePage && window.scrollY <= 50) {
+                    header.classList.remove('scrolled');
+                }
             }
         });
     }
