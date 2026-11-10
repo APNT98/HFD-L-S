@@ -1,0 +1,270 @@
+---
+import { NAV_LINKS, SITE_INFO } from '@utils/constants';
+import ThemeToggle from './ThemeToggle.astro';
+
+const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/' || currentPath === '';
+---
+
+<header id="main-header" class={`header-root ${!isHome ? 'scrolled' : ''}`}>
+  <nav class="nav-container" aria-label="Navegación principal">
+    <!-- Brand Logo with View Transition Name -->
+    <a href="/" class="brand-logo" aria-label={`${SITE_INFO.name} - Ir al inicio`}>
+      <img
+        src="/img/logo.png"
+        alt="Logo HFD Logistic Service"
+        class="logo-img"
+        width="160"
+        height="50"
+        style="view-transition-name: brand-logo;"
+      />
+    </a>
+
+    <!-- Navigation Menu and Controls -->
+    <div class="nav-actions">
+      <ul class="nav-menu" id="nav-menu" role="menubar">
+        {NAV_LINKS.map(link => {
+          const isActive = link.href === '/' 
+            ? currentPath === '/'
+            : currentPath.startsWith(link.href);
+          
+          return (
+            <li role="none">
+              <a
+                href={link.href}
+                class={`nav-link ${isActive ? 'active' : ''}`}
+                aria-current={isActive ? 'page' : undefined}
+                role="menuitem"
+                data-astro-prefetch
+              >
+                {link.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <!-- Theme Toggle -->
+      <ThemeToggle />
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        type="button"
+        id="mobile-menu-btn"
+        class="mobile-menu-btn"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .header-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.25rem 0;
+    transition: background-color var(--transition-normal), padding var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+    border-bottom: 1px solid transparent;
+  }
+
+  .header-root.scrolled {
+    background-color: var(--nav-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 0.75rem 0;
+    box-shadow: var(--shadow-md);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    transition: transform var(--transition-fast);
+  }
+
+  .brand-logo:hover .logo-img {
+    transform: scale(1.03);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+  }
+
+  .nav-link {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--nav-text);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    transition: var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--primary-color);
+    background-color: var(--primary-glow);
+  }
+
+  .nav-link.active {
+    color: #ffffff;
+    background-color: var(--primary-color);
+  }
+
+  /* Mobile menu toggle */
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 1001;
+  }
+
+  .mobile-menu-btn .bar {
+    width: 100%;
+    height: 2.5px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: var(--transition-normal);
+  }
+
+  .mobile-menu-btn.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-menu-btn.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-btn.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 860px) {
+    .mobile-menu-btn {
+      display: flex;
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--bg-surface-elevated);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 6rem 2rem 2rem;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-xl);
+      border-left: 1px solid var(--border-color);
+      transition: right var(--transition-normal);
+      z-index: 1000;
+    }
+
+    .nav-menu.active {
+      right: 0;
+    }
+
+    .nav-link {
+      width: 100%;
+      display: block;
+      font-size: 1.1rem;
+      padding: 0.75rem 1rem;
+    }
+  }
+</style>
+
+<script>
+  function setupHeader() {
+    const header = document.getElementById('main-header');
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+    const isHome = window.location.pathname === '/' || window.location.pathname === '';
+
+    const handleScroll = () => {
+      if (!header) return;
+      if (isHome) {
+        if (window.scrollY > 30) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      } else {
+        header.classList.add('scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    if (mobileBtn && navMenu) {
+      const toggleMobile = () => {
+        const isOpen = navMenu.classList.contains('active');
+        navMenu.classList.toggle('active', !isOpen);
+        mobileBtn.classList.toggle('active', !isOpen);
+        mobileBtn.setAttribute('aria-expanded', String(!isOpen));
+      };
+
+      mobileBtn.addEventListener('click', toggleMobile);
+
+      // Close menu when clicking nav links
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          mobileBtn.classList.remove('active');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Escape key to close mobile menu
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+          toggleMobile();
+        }
+      });
+    }
+  }
+
+  // Standard DOM lifecycle
+  document.addEventListener('DOMContentLoaded', setupHeader);
+  document.addEventListener('astro:page-load', setupHeader);
+</script>

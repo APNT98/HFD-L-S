@@ -1,0 +1,199 @@
+---
+// Hero Section with high-impact visuals and accessible hierarchy
+---
+
+<section class="hero-root" aria-label="Introducción a HFD Logistic Service">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-badge reveal">
+      <span class="pulse-dot"></span>
+      <span>Terminal de Carga TC3 • Aeropuerto Internacional El Dorado</span>
+    </div>
+    
+    <h1 class="hero-title reveal">
+      Logística de Carga Aérea de <span class="text-gradient">Clase Mundial</span>
+    </h1>
+
+    <p class="hero-subtitle reveal">
+      Soluciones integrales, intermediación y coordinación operativa con altos estándares de calidad, seguridad y cumplimiento normativo.
+    </p>
+
+    <div class="hero-cta-group reveal">
+      <a href="/servicios" class="btn btn-primary" data-astro-prefetch>
+        <span>Nuestros Servicios</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <a href="/contacto" class="btn btn-outline" data-astro-prefetch>
+        <span>Solicitar Cotización</span>
+      </a>
+    </div>
+
+    <!-- Quick Stats Bar -->
+    <div class="hero-stats reveal">
+      <div class="stat-item">
+        <span class="stat-number">+10</span>
+        <span class="stat-label">Años de Experiencia</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Trazabilidad en TC3</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Soporte Operativo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-root {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(11, 25, 44, 0.88), rgba(30, 62, 98, 0.82)), url('/img/hero.jpg') center/cover no-repeat;
+    padding: calc(6rem + 60px) 0 5rem;
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(36, 150, 212, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #e2e8f0;
+  }
+
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #38bdf8;
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 10px #38bdf8;
+    animation: pulseGlow 2s infinite;
+  }
+
+  .hero-title {
+    color: #ffffff;
+    font-size: clamp(2.5rem, 5.5vw, 4rem);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #38bdf8, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    color: #cbd5e1;
+    max-width: 780px;
+    margin-bottom: 2.75rem;
+    line-height: 1.65;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .hero-cta-group .btn-outline {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+  }
+
+  .hero-cta-group .btn-outline:hover {
+    border-color: #38bdf8;
+    background: rgba(56, 189, 248, 0.15);
+    color: #ffffff;
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 1.5rem 2.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-number {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #38bdf8;
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 640px) {
+    .stat-divider {
+      display: none;
+    }
+    .hero-stats {
+      gap: 1.5rem;
+      padding: 1.25rem 1.5rem;
+    }
+  }
+</style>

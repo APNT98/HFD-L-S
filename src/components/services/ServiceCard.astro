@@ -1,0 +1,52 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  badge?: string;
+}
+
+const { icon, title, description, badge } = Astro.props;
+---
+
+<article class="service-card card reveal">
+  {badge && <span class="service-badge">{badge}</span>}
+  <div class="card-icon-wrapper" aria-hidden="true">
+    <i class={`fas ${icon}`}></i>
+  </div>
+  <h3 class="service-title">{title}</h3>
+  <p class="service-desc">{description}</p>
+</article>
+
+<style>
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .service-badge {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: var(--primary-glow);
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: auto;
+  }
+</style>

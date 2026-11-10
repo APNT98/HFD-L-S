@@ -1,0 +1,85 @@
+---
+// About Brief Section
+---
+
+<section class="section-padding about-brief-root">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>¿Quiénes Somos?</h2>
+      <p>Líderes en intermediación y gestión integral de carga aérea</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card card reveal">
+        <div class="card-icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <h3>Compromiso y Calidad</h3>
+        <p>
+          Trabajamos con procesos estandarizados bajo el cumplimiento riguroso de normativas y requisitos legales para asegurar la máxima calidad.
+        </p>
+      </div>
+
+      <div class="about-card card reveal">
+        <div class="card-icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <h3>Atención Oportuna</h3>
+        <p>
+          Respuesta sumamente ágil y proactiva ante contingencias y requerimientos urgentes en la terminal de carga aeroportuaria.
+        </p>
+      </div>
+
+      <div class="about-card card reveal">
+        <div class="card-icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3>Talento Humano Experto</h3>
+        <p>
+          Equipo altamente calificado con amplia trayectoria en manejo de mercancías, aduanas, estiba y operaciones logísticas.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-action reveal">
+      <a href="/empresa" class="btn btn-outline" data-astro-prefetch>
+        <span>Conocer más sobre nosotros</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-brief-root {
+    background-color: var(--bg-surface);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .about-card h3 {
+    margin-bottom: 0.75rem;
+  }
+
+  .about-action {
+    text-align: center;
+  }
+</style>

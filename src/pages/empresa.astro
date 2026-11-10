@@ -1,0 +1,408 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: 'Inicio', item: '/' },
+  { name: 'Empresa', item: '/empresa' }
+];
+---
+
+<BaseLayout
+  title="Nuestra Empresa"
+  description="Conozca la trayectoria, misión, visión y los compromisos de calidad de HFD Logistic Service S.A.S. en el sector logístico aeroportuario de Colombia."
+  breadcrumbs={breadcrumbs}
+>
+  <!-- Subpage Hero Header -->
+  <section class="subpage-hero" aria-label="Encabezado de la página Empresa">
+    <div class="container text-center">
+      <h1 class="page-title reveal">Nuestra Empresa</h1>
+      <p class="page-subtitle reveal">Pasión por la logística, compromiso inquebrantable con la excelencia.</p>
+    </div>
+  </section>
+
+  <!-- Who We Are Detailed -->
+  <section class="section-padding about-detail-section">
+    <div class="container">
+      <div class="about-hero-block card reveal">
+        <div class="about-badge">Identidad Corporativa</div>
+        <h2>¿Quiénes Somos?</h2>
+        <p class="lead-paragraph">
+          <strong>HFD Logistic Service S.A.S.</strong> es una empresa especializada en la prestación de servicios logísticos y operativos con una trayectoria consolidada en el mercado colombiano. Trabajamos diariamente para ofrecer soluciones confiables, oportunas y eficientes, garantizando altos estándares de calidad, seguridad y responsabilidad empresarial en la Terminal de Carga del Aeropuerto Internacional El Dorado.
+        </p>
+
+        <div class="values-grid">
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-history"></i>
+            </div>
+            <h4>Experiencia</h4>
+            <p>Trayectoria sólida y comprobada en el sector logístico aeroportuario nacional.</p>
+          </div>
+
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h4>Equipo Humano</h4>
+            <p>Profesionales capacitados y altamente comprometidos con cada cliente.</p>
+          </div>
+
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <h4>Valores Éticos</h4>
+            <p>Responsabilidad, cumplimiento estricto y genuina vocación de servicio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="section-padding mission-vision-section" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="mission-grid">
+        <div class="card mission-card reveal">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3>Misión</h3>
+          <p>
+            Brindar servicios logísticos y operativos eficientes, seguros y oportunos, orientados a satisfacer las necesidades de nuestros clientes mediante un equipo humano comprometido, procesos organizados y el cumplimiento de los requisitos legales, promoviendo la mejora continua, la calidad del servicio y el bienestar de nuestros trabajadores.
+          </p>
+        </div>
+
+        <div class="card vision-card reveal">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3>Visión</h3>
+          <p>
+            Ser una empresa reconocida a nivel nacional por la calidad, confiabilidad y eficiencia en la prestación de servicios logísticos, fortaleciendo continuamente nuestros procesos, el desarrollo del talento humano y el cumplimiento de estándares de seguridad, calidad y responsabilidad empresarial.
+          </p>
+          <div class="vision-tags">
+            <span class="tag">Calidad</span>
+            <span class="tag">Confiabilidad</span>
+            <span class="tag">Eficiencia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Objectives Section -->
+  <section class="section-padding objectives-section">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Objetivos Corporativos</h2>
+        <p>Pilares estratégicos y de calidad orientados a un crecimiento sostenible y seguro.</p>
+      </div>
+
+      <div class="objectives-grid">
+        <!-- Strategic Objectives -->
+        <div class="card reveal">
+          <h3 class="obj-heading">
+            <i class="fas fa-chess-knight"></i> Objetivos Estratégicos
+          </h3>
+          <ul class="obj-list">
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Fortalecer el posicionamiento en el sector logístico nacional.</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Mejorar continuamente los procesos operativos y administrativos.</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Garantizar el cumplimiento legal en todas las operaciones.</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Promover el desarrollo y bienestar del talento humano.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Quality Objectives -->
+        <div class="card reveal">
+          <h3 class="obj-heading">
+            <i class="fas fa-award"></i> Objetivos de Calidad
+          </h3>
+          <ul class="obj-list">
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Garantizar servicios oportunos, eficientes y sin contratiempos.</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Fortalecer los niveles de satisfacción de nuestros clientes.</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Minimizar de forma proactiva los errores operativos.</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Mantener una trazabilidad documental rigurosa y transparente.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="traceability-callout reveal">
+        <i class="fas fa-info-circle"></i>
+        <span>La trazabilidad documental y el cumplimiento legal son pilares transversales a toda nuestra operación aeroportuaria.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HSEQ Section (Safety, Health & Environment) -->
+  <section class="section-padding hseq-section" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Seguridad, Salud y Medio Ambiente</h2>
+        <p>Protección integral de nuestros colaboradores y responsabilidad ecológica activa.</p>
+      </div>
+
+      <div class="grid-auto-fit">
+        <div class="card reveal">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <h3>SG-SST</h3>
+          <p>Implementación y mantenimiento riguroso del Sistema de Gestión de Seguridad y Salud en el Trabajo conforme a la normatividad nacional vigente.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-heart-pulse"></i>
+          </div>
+          <h3>Prevención Integral</h3>
+          <p>Prevención activa de accidentes y enfermedades laborales, promoviendo ambientes de trabajo seguros y una sólida cultura de autocuidado.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3>Responsabilidad Ambiental</h3>
+          <p>Uso sumamente responsable de recursos, gestión adecuada y clasificación de residuos, y sensibilización constante sobre el cuidado del medio ambiente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Organizational Commitments -->
+  <section class="section-padding commitments-section">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Compromisos Organizacionales</h2>
+        <p>Principios fundamentales que guían cada decisión en nuestras operaciones diarias.</p>
+      </div>
+
+      <div class="commitments-grid">
+        <div class="card commitment-card reveal">
+          <h4><i class="fas fa-clipboard-check"></i> Cumplimiento</h4>
+          <p>Respeto estricto a la normatividad aduanera y acuerdos comerciales acordados con nuestros clientes.</p>
+        </div>
+
+        <div class="card commitment-card reveal">
+          <h4><i class="fas fa-medal"></i> Calidad</h4>
+          <p>Mantenemos estándares elevados en cada servicio prestado y en cada etapa de la cadena de suministro.</p>
+        </div>
+
+        <div class="card commitment-card reveal">
+          <h4><i class="fas fa-helmet-safety"></i> Seguridad</h4>
+          <p>La salud, el bienestar y la integridad física de las personas son la prioridad absoluta en nuestro trabajo diario.</p>
+        </div>
+
+        <div class="card commitment-card reveal">
+          <h4><i class="fas fa-arrows-spin"></i> Mejora Continua</h4>
+          <p>Evolución constante de nuestros procesos internos, tecnología y capacidades técnicas operativas.</p>
+        </div>
+
+        <div class="card commitment-card reveal">
+          <h4><i class="fas fa-handshake"></i> Responsabilidad</h4>
+          <p>Compromiso ético y responsable en el ámbito empresarial, social y de preservación ambiental.</p>
+        </div>
+
+        <div class="card commitment-card reveal">
+          <h4><i class="fas fa-user-clock"></i> Atención Oportuna</h4>
+          <p>Respuesta sumamente ágil, proactiva y efectiva ante los requerimientos de la operación.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .subpage-hero {
+    background: linear-gradient(135deg, rgba(11, 25, 44, 0.95), rgba(30, 62, 98, 0.9)), url('/img/hero.jpg') center/cover no-repeat;
+    padding: calc(7rem + 40px) 0 4rem;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .page-title {
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-subtitle {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .about-hero-block {
+    text-align: center;
+    padding: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .about-badge {
+    display: inline-block;
+    background: var(--primary-glow);
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.35rem 1rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-paragraph {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 1.5rem auto 3rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+
+  .value-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2rem 1.5rem;
+  }
+
+  .value-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .value-item h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .vision-tags {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .tag {
+    background: var(--primary-color);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.35rem 1rem;
+    border-radius: var(--radius-full);
+  }
+
+  .objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .obj-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .obj-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .obj-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .obj-list li i {
+    color: var(--primary-color);
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .traceability-callout {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    background: var(--bg-surface);
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .traceability-callout i {
+    color: var(--primary-color);
+    font-size: 1.35rem;
+  }
+
+  .commitments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .commitment-card {
+    border-top: 4px solid var(--primary-color);
+    padding: 2rem;
+  }
+
+  .commitment-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+  }
+
+  .commitment-card h4 i {
+    color: var(--primary-color);
+  }
+</style>

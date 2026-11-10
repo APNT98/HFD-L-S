@@ -1,0 +1,278 @@
+---
+// Accessible Contact Form with client-side validation and Formspree integration
+---
+
+<div class="contact-form-card card reveal">
+  <h2>Envíenos un Mensaje</h2>
+  <p class="form-lead">Complete el siguiente formulario y un asesor logístico responderá a su requerimiento a la brevedad.</p>
+
+  <!-- Live Status Message Alert -->
+  <div id="form-status" class="form-status-alert" role="alert" aria-live="assertive" style="display: none;"></div>
+
+  <form id="contact-form" action="https://formspree.io/f/mljrngqy" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="Nuevo requerimiento desde sitio web HFD Logistic Service" />
+
+    <!-- Name Field -->
+    <div class="form-group">
+      <label for="name">
+        Nombre Completo o Empresa <span class="required" aria-hidden="true">*</span>
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-control"
+        placeholder="Ej. Juan Pérez / Empresa Logística"
+        required
+        aria-required="true"
+        aria-describedby="name-error"
+      />
+      <span class="form-error" id="name-error" role="alert">
+        Por favor, ingrese su nombre completo o el de su empresa.
+      </span>
+    </div>
+
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="email">
+        Correo Electrónico Corporativo <span class="required" aria-hidden="true">*</span>
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="form-control"
+        placeholder="contacto@suempresa.com"
+        required
+        aria-required="true"
+        aria-describedby="email-error"
+      />
+      <span class="form-error" id="email-error" role="alert">
+        Por favor, ingrese un correo electrónico válido.
+      </span>
+    </div>
+
+    <!-- Phone Field (Optional for faster contact) -->
+    <div class="form-group">
+      <label for="phone">
+        Teléfono / WhatsApp de Contacto
+      </label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        class="form-control"
+        placeholder="+57 300 000 0000"
+      />
+    </div>
+
+    <!-- Message Field -->
+    <div class="form-group">
+      <label for="message">
+        Descripción del Requerimiento o Carga <span class="required" aria-hidden="true">*</span>
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        rows="5"
+        class="form-control"
+        placeholder="Describa el tipo de mercancía, volumen, origen/destino o apoyo logístico requerido..."
+        required
+        aria-required="true"
+        aria-describedby="message-error"
+      ></textarea>
+      <span class="form-error" id="message-error" role="alert">
+        Por favor, describa brevemente su requerimiento.
+      </span>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" id="submit-btn" class="btn btn-primary submit-btn">
+      <span class="btn-text">Enviar Solicitud</span>
+      <span class="btn-loader" style="display: none;" aria-hidden="true">
+        <svg class="spinner" viewBox="0 0 50 50">
+          <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+      </span>
+    </button>
+  </form>
+</div>
+
+<style>
+  .contact-form-card {
+    padding: clamp(2rem, 4vw, 3rem);
+    height: 100%;
+  }
+
+  .form-lead {
+    margin: 0.75rem 0 2rem;
+    font-size: 1rem;
+  }
+
+  .required {
+    color: var(--danger-color);
+    font-weight: bold;
+  }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .form-status-alert {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .form-status-success {
+    background-color: rgba(16, 185, 129, 0.15);
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+  }
+
+  .form-status-error {
+    background-color: rgba(239, 68, 68, 0.15);
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+  }
+
+  .spinner {
+    animation: rotate 1.5s linear infinite;
+    width: 20px;
+    height: 20px;
+  }
+
+  .spinner .path {
+    stroke: #ffffff;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+</style>
+
+<script>
+  function setupContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    if (!form) return;
+
+    const statusAlert = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    const btnText = submitBtn?.querySelector('.btn-text');
+    const btnLoader = submitBtn?.querySelector('.btn-loader') as HTMLElement | null;
+
+    const validateInput = (input: HTMLInputElement | HTMLTextAreaElement) => {
+      const errorSpan = document.getElementById(`${input.id}-error`);
+      let valid = true;
+
+      if (input.required && !input.value.trim()) {
+        valid = false;
+      } else if (input.type === 'email') {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(input.value.trim())) {
+          valid = false;
+        }
+      }
+
+      if (!valid) {
+        input.setAttribute('aria-invalid', 'true');
+        if (errorSpan) errorSpan.style.display = 'block';
+      } else {
+        input.removeAttribute('aria-invalid');
+        if (errorSpan) errorSpan.style.display = 'none';
+      }
+
+      return valid;
+    };
+
+    const inputs = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required]');
+    inputs.forEach(input => {
+      input.addEventListener('input', () => validateInput(input));
+      input.addEventListener('blur', () => validateInput(input));
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let isFormValid = true;
+
+      inputs.forEach(input => {
+        if (!validateInput(input)) {
+          isFormValid = false;
+        }
+      });
+
+      if (!isFormValid) {
+        const firstInvalid = form.querySelector('[aria-invalid="true"]') as HTMLElement | null;
+        firstInvalid?.focus();
+        return;
+      }
+
+      if (submitBtn && btnText && btnLoader) {
+        submitBtn.disabled = true;
+        btnText.textContent = 'Enviando requerimiento...';
+        btnLoader.style.display = 'inline-block';
+      }
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          if (statusAlert) {
+            statusAlert.className = 'form-status-alert form-status-success';
+            statusAlert.textContent = '¡Gracias! Su mensaje ha sido enviado con éxito. Nuestro equipo se pondrá en contacto con usted a la brevedad.';
+            statusAlert.style.display = 'block';
+          }
+          form.reset();
+        } else {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Error al procesar el envío.');
+        }
+      } catch (err: any) {
+        if (statusAlert) {
+          statusAlert.className = 'form-status-alert form-status-error';
+          statusAlert.textContent = err.message || 'Ocurrió un error al enviar el formulario. Por favor contáctenos directamente por WhatsApp o teléfono.';
+          statusAlert.style.display = 'block';
+        }
+      } finally {
+        if (submitBtn && btnText && btnLoader) {
+          submitBtn.disabled = false;
+          btnText.textContent = 'Enviar Solicitud';
+          btnLoader.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupContactForm);
+</script>

@@ -1,0 +1,125 @@
+---
+import { SITE_INFO } from '@utils/constants';
+---
+
+<div class="contact-info-root card reveal">
+  <h2>Información Directa</h2>
+  <p class="info-lead">
+    Visítenos en nuestras instalaciones de la Terminal de Carga del Aeropuerto Internacional El Dorado o contáctenos por cualquiera de nuestros canales oficiales:
+  </p>
+
+  <div class="info-items-list">
+    <!-- Location -->
+    <div class="info-item">
+      <div class="item-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+      </div>
+      <div>
+        <h3>Ubicación Estratégica</h3>
+        <p>{SITE_INFO.address.street}</p>
+        <p class="sub-location">{SITE_INFO.address.city}, {SITE_INFO.address.country}</p>
+      </div>
+    </div>
+
+    <!-- Phone & WhatsApp -->
+    <div class="info-item">
+      <div class="item-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+      </div>
+      <div>
+        <h3>Línea Telefónica & WhatsApp</h3>
+        <p>
+          <a href={`tel:${SITE_INFO.phoneRaw}`}>{SITE_INFO.phone}</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="info-item">
+      <div class="item-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      </div>
+      <div>
+        <h3>Correo Electrónico</h3>
+        <p>
+          <a href={`mailto:${SITE_INFO.email}`}>{SITE_INFO.email}</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Schedule -->
+    <div class="info-item">
+      <div class="item-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+      </div>
+      <div>
+        <h3>Horario de Atención Operativa</h3>
+        <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+        <p class="sub-location">Sábados: 8:00 AM - 12:00 PM</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .contact-info-root {
+    padding: clamp(2rem, 4vw, 3rem);
+    height: 100%;
+  }
+
+  .info-lead {
+    margin: 1rem 0 2rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .info-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .item-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--primary-glow);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .info-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .info-item p {
+    font-size: 0.95rem;
+    color: var(--text-main);
+  }
+
+  .sub-location {
+    color: var(--text-muted) !important;
+    font-size: 0.85rem !important;
+  }
+</style>

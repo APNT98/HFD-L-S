@@ -1,0 +1,127 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ServiceCard from '@components/services/ServiceCard.astro';
+import { LOGISTIC_SERVICES, OPERATIONAL_SERVICES } from '@utils/constants';
+
+const breadcrumbs = [
+  { name: 'Inicio', item: '/' },
+  { name: 'Servicios', item: '/servicios' }
+];
+---
+
+<BaseLayout
+  title="Portafolio de Servicios"
+  description="Explore nuestra gama completa de soluciones logísticas aeroportuarias: gestión de carga internacional, cargue/descargue, almacenamiento y coordinación operativa en El Dorado."
+  breadcrumbs={breadcrumbs}
+>
+  <!-- Subpage Hero Header -->
+  <section class="subpage-hero" aria-label="Encabezado de Servicios">
+    <div class="container text-center">
+      <h1 class="page-title reveal">Nuestros Servicios</h1>
+      <p class="page-subtitle reveal">Soluciones integrales de carga aérea diseñadas con altos estándares de precisión y eficiencia.</p>
+    </div>
+  </section>
+
+  <!-- Category 1: Servicios Logísticos -->
+  <section class="section-padding logistic-services-section">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Servicios Logísticos Especializados</h2>
+        <p>Optimizamos el flujo físico y documental de sus mercancías dentro de la terminal de carga.</p>
+      </div>
+
+      <div class="grid-auto-fit">
+        {LOGISTIC_SERVICES.map((service, index) => (
+          <ServiceCard
+            icon={service.icon}
+            title={service.title}
+            description={service.description}
+            badge={`Servicio 0${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Category 2: Servicios Operativos -->
+  <section class="section-padding operational-services-section" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Servicios Operativos y de Acompañamiento</h2>
+        <p>Acompañamiento personalizado y adaptado a los requerimientos específicos de cada operación.</p>
+      </div>
+
+      <div class="grid-auto-fit">
+        {OPERATIONAL_SERVICES.map((service) => (
+          <ServiceCard
+            icon={service.icon}
+            title={service.title}
+            description={service.description}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Logistics Requirement CTA -->
+  <section class="section-padding custom-req-cta">
+    <div class="container container-narrow">
+      <div class="card cta-card reveal text-center">
+        <h2>¿Requiere un esquema logístico a su medida?</h2>
+        <p>
+          Estamos plenamente capacitados para coordinar cargas críticas, operaciones con requerimientos especiales o flujos de trabajo aduaneros específicos.
+        </p>
+        <div class="cta-actions">
+          <a href="/contacto" class="btn btn-primary" data-astro-prefetch>
+            <span>Solicitar Asesoría Personalizada</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .subpage-hero {
+    background: linear-gradient(135deg, rgba(11, 25, 44, 0.95), rgba(30, 62, 98, 0.9)), url('/img/hero.jpg') center/cover no-repeat;
+    padding: calc(7rem + 40px) 0 4rem;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .page-title {
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-subtitle {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .cta-card {
+    padding: clamp(2.5rem, 5vw, 3.5rem);
+    border: 1.5px solid var(--border-color);
+  }
+
+  .cta-card h2 {
+    margin-bottom: 1rem;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .cta-card p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    justify-content: center;
+  }
+</style>

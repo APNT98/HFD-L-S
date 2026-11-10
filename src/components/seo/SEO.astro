@@ -1,0 +1,54 @@
+---
+import { SITE_INFO } from '@utils/constants';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: URL | string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description = SITE_INFO.description,
+  image = '/img/hero.jpg',
+  canonicalURL = new URL(Astro.url.pathname, Astro.site),
+  type = 'website'
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${SITE_INFO.name}` : `${SITE_INFO.name} | Excelencia en Carga Aérea`;
+const ogImageUrl = new URL(image, Astro.site).toString();
+---
+
+<!-- Global Metadata -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/img/logo.png" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Primary Meta Tags -->
+<title>{pageTitle}</title>
+<meta name="title" content={pageTitle} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook / LinkedIn -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:site_name" content={SITE_INFO.name} />
+<meta property="og:locale" content="es_CO" />
+
+<!-- Twitter / X -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={pageTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImageUrl} />
+
+<!-- Theme Color for Mobile Browsers -->
+<meta name="theme-color" content="#2496d4" />
+<meta name="color-scheme" content="light dark" />

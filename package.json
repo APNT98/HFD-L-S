@@ -1,0 +1,27 @@
+{
+  "name": "hfd",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/APNT98/HFD-L-S#readme",
+  "bugs": {
+    "url": "https://github.com/APNT98/HFD-L-S/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/APNT98/HFD-L-S.git"
+  },
+  "license": "ISC",
+  "author": "APNT98",
+  "type": "module",
+  "scripts": {
+    "dev": "set NAPI_RS_FORCE_WASI=error && astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^5.18.2"
+  }
+}

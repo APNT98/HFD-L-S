@@ -1,0 +1,139 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ContactInfo from '@components/contact/ContactInfo.astro';
+import ContactForm from '@components/contact/ContactForm.astro';
+import { SITE_INFO } from '@utils/constants';
+
+const breadcrumbs = [
+  { name: 'Inicio', item: '/' },
+  { name: 'Contacto', item: '/contacto' }
+];
+---
+
+<BaseLayout
+  title="Contacto y Ubicación"
+  description="Póngase en contacto con HFD Logistic Service S.A.S. en la Terminal de Carga TC3 del Aeropuerto El Dorado, Bogotá. Solicite su cotización personalizada hoy."
+  breadcrumbs={breadcrumbs}
+>
+  <!-- Subpage Hero Header -->
+  <section class="subpage-hero" aria-label="Encabezado de Contacto">
+    <div class="container text-center">
+      <h1 class="page-title reveal">Contacto</h1>
+      <p class="page-subtitle reveal">Estamos listos para atender sus requerimientos logísticos y coordinar sus operaciones en tiempo récord.</p>
+    </div>
+  </section>
+
+  <!-- Contact Split Section (Info + Form) -->
+  <section class="section-padding contact-main-section">
+    <div class="container">
+      <div class="contact-grid">
+        <ContactInfo />
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Map Section -->
+  <section class="map-section reveal" aria-label="Ubicación en Google Maps">
+    <div class="container">
+      <div class="map-wrapper card">
+        <div class="map-header">
+          <h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Nuestras Instalaciones en El Dorado
+          </h3>
+          <p>{SITE_INFO.address.street} • Bogotá D.C., Colombia</p>
+        </div>
+        <div class="iframe-container">
+          <iframe
+            src="https://maps.google.com/maps?q=4.6904787,-74.1352373&hl=es&z=16&output=embed"
+            width="100%"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación oficial de HFD Logistic Service S.A.S. en el Aeropuerto El Dorado"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .subpage-hero {
+    background: linear-gradient(135deg, rgba(11, 25, 44, 0.95), rgba(30, 62, 98, 0.9)), url('/img/hero.jpg') center/cover no-repeat;
+    padding: calc(7rem + 40px) 0 4rem;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .page-title {
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-subtitle {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: stretch;
+  }
+
+  .map-section {
+    padding-bottom: 5rem;
+  }
+
+  .map-wrapper {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .map-header {
+    padding: 1.5rem 2rem;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .map-header h3 {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+  }
+
+  .map-header p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .iframe-container {
+    width: 100%;
+    height: 450px;
+    background: #e2e8f0;
+  }
+
+  .iframe-container iframe {
+    display: block;
+  }
+
+  @media (max-width: 960px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

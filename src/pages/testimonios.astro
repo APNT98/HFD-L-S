@@ -1,0 +1,134 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import TestimonialCard from '@components/testimonials/TestimonialCard.astro';
+import { TESTIMONIALS_DATA } from '@utils/constants';
+
+const breadcrumbs = [
+  { name: 'Inicio', item: '/' },
+  { name: 'Testimonios', item: '/testimonios' }
+];
+---
+
+<BaseLayout
+  title="Testimonios de Clientes"
+  description="Conozca las experiencias de éxito y testimonios de aliados comerciales que confían en HFD Logistic Service para sus operaciones de carga aérea en Bogotá."
+  breadcrumbs={breadcrumbs}
+>
+  <!-- Subpage Hero Header -->
+  <section class="subpage-hero" aria-label="Encabezado de Testimonios">
+    <div class="container text-center">
+      <h1 class="page-title reveal">Testimonios y Casos de Éxito</h1>
+      <p class="page-subtitle reveal">Nuestra mejor carta de presentación es la satisfacción continua de nuestros clientes y aliados.</p>
+    </div>
+  </section>
+
+  <!-- Testimonials Grid -->
+  <section class="section-padding testimonials-section">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Lo que Dicen Nuestros Aliados</h2>
+        <p>Experiencias reales de empresas que han transformado sus procesos logísticos con nosotros.</p>
+      </div>
+
+      <div class="grid-auto-fit">
+        {TESTIMONIALS_DATA.map((item) => (
+          <TestimonialCard
+            quote={item.quote}
+            author={item.author}
+            company={item.company}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Quality Pillars -->
+  <section class="section-padding partnership-section" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>¿Por Qué Elegir a HFD Logistic Service?</h2>
+        <p>Garantizamos valor tangible en cada etapa operativa de la terminal de carga.</p>
+      </div>
+
+      <div class="grid-auto-fit">
+        <div class="card reveal">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-stopwatch"></i>
+          </div>
+          <h3>Agilidad y Tiempos Récord</h3>
+          <p>Coordinamos y agilizamos los procesos de recepción, revisión y liberación de mercancías reduciendo tiempos muertos.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-file-shield"></i>
+          </div>
+          <h3>Cumplimiento Normativo</h3>
+          <p>Rigor absoluto en trámites documentales, trazabilidad y normatividad legal aduanera y aeroportuaria.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>Comunicación Fluida 24/7</h3>
+          <p>Canales directos de atención y seguimiento proactivo en tiempo real para mantener informado a su equipo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="testimonial-cta-banner reveal">
+    <div class="container text-center">
+      <h2>Únase a Nuestra Red de Aliados Satisfechos</h2>
+      <p>Permítanos optimizar su operación logística en el Aeropuerto El Dorado.</p>
+      <a href="/contacto" class="btn btn-primary" data-astro-prefetch>
+        <span>Empezar Hoy Mismo</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .subpage-hero {
+    background: linear-gradient(135deg, rgba(11, 25, 44, 0.95), rgba(30, 62, 98, 0.9)), url('/img/hero.jpg') center/cover no-repeat;
+    padding: calc(7rem + 40px) 0 4rem;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .page-title {
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-subtitle {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .testimonial-cta-banner {
+    padding: clamp(3.5rem, 6vw, 5rem) 0;
+    background: linear-gradient(135deg, #0b192c, #1e3e62);
+    color: #ffffff;
+  }
+
+  .testimonial-cta-banner h2 {
+    color: #ffffff;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-cta-banner p {
+    color: #cbd5e1;
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+  }
+</style>

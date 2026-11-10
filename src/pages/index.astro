@@ -1,0 +1,142 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroSection from '@components/home/HeroSection.astro';
+import AboutBrief from '@components/home/AboutBrief.astro';
+import TRMWidget from '@components/home/TRMWidget.astro';
+import ServiceCard from '@components/services/ServiceCard.astro';
+import TestimonialCard from '@components/testimonials/TestimonialCard.astro';
+import { LOGISTIC_SERVICES, TESTIMONIALS_DATA } from '@utils/constants';
+---
+
+<BaseLayout
+  title="Inicio"
+  description="Operadores logísticos expertos en la Terminal de Carga TC3 del Aeropuerto El Dorado. Gestión de carga internacional, operaciones aeroportuarias y soluciones a la medida."
+>
+  <!-- Hero Section -->
+  <HeroSection />
+
+  <!-- Brief Overview -->
+  <AboutBrief />
+
+  <!-- Featured Services Preview -->
+  <section class="section-padding services-preview">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Servicios Logísticos Especializados</h2>
+        <p>Acompañamiento integral y riguroso en cada etapa de la cadena de suministro aérea.</p>
+      </div>
+
+      <div class="grid-auto-fit">
+        {LOGISTIC_SERVICES.slice(0, 3).map((service, index) => (
+          <ServiceCard
+            icon={service.icon}
+            title={service.title}
+            description={service.description}
+            badge={`Pilar 0${index + 1}`}
+          />
+        ))}
+      </div>
+
+      <div class="services-preview-action reveal">
+        <a href="/servicios" class="btn btn-primary" data-astro-prefetch>
+          <span>Explorar todos los servicios</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live TRM Indicator & Converter -->
+  <TRMWidget />
+
+  <!-- Testimonials Section -->
+  <section class="section-padding testimonials-preview" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Confianza Comprobada</h2>
+        <p>Nuestra mayor garantía es la tranquilidad de nuestros aliados comerciales.</p>
+      </div>
+
+      <div class="grid-auto-fit">
+        {TESTIMONIALS_DATA.slice(0, 2).map((item) => (
+          <TestimonialCard
+            quote={item.quote}
+            author={item.author}
+            company={item.company}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- High-Impact Call to Action Banner -->
+  <section class="cta-banner reveal">
+    <div class="container cta-banner-content">
+      <h2>¿Listo para Optimizar sus Operaciones en El Dorado?</h2>
+      <p>Cuente con un equipo disponible para asesorarlo en trámites, coordinación y manejo físico de carga.</p>
+      <div class="cta-btns">
+        <a href="/contacto" class="btn btn-magenta" data-astro-prefetch>
+          <span>Solicitar Cotización Inmediata</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .services-preview-action {
+    text-align: center;
+    margin-top: 3.5rem;
+  }
+
+  .cta-banner {
+    background: linear-gradient(135deg, #0b192c, #1e3e62);
+    color: #ffffff;
+    padding: clamp(4rem, 7vw, 6rem) 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(229, 26, 130, 0.2), transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-banner-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+
+  .cta-banner h2 {
+    color: #ffffff;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-banner p {
+    color: #cbd5e1;
+    font-size: 1.15rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .cta-btns {
+    display: flex;
+    justify-content: center;
+  }
+</style>

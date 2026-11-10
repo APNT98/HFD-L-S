@@ -1,0 +1,233 @@
+---
+import { SITE_INFO, NAV_LINKS } from '@utils/constants';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer-root">
+  <div class="container footer-grid">
+    <!-- Brand Info -->
+    <div class="footer-col brand-col">
+      <a href="/" class="footer-brand" aria-label={`${SITE_INFO.name} - Inicio`}>
+        <img src="/img/logo.png" alt="Logo HFD Logistic Service" width="150" height="46" class="footer-logo" />
+      </a>
+      <p class="footer-desc">
+        Expertos en intermediación, coordinación y soporte logístico especializado de carga aérea en la Terminal TC3 del Aeropuerto El Dorado.
+      </p>
+      <div class="footer-location">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <span>{SITE_INFO.address.street}, {SITE_INFO.address.city} - {SITE_INFO.address.country}</span>
+      </div>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div class="footer-col">
+      <h3 class="footer-heading">Enlaces Rápidos</h3>
+      <ul class="footer-links">
+        {NAV_LINKS.map(link => (
+          <li>
+            <a href={link.href} data-astro-prefetch>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Contact & Channels -->
+    <div class="footer-col">
+      <h3 class="footer-heading">Contacto Directo</h3>
+      <ul class="footer-contact-list">
+        <li>
+          <a href={`tel:${SITE_INFO.phoneRaw}`} class="contact-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            {SITE_INFO.phone}
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${SITE_INFO.email}`} class="contact-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            {SITE_INFO.email}
+          </a>
+        </li>
+      </ul>
+      
+      <div class="social-links">
+        <a href={SITE_INFO.social.linkedin} aria-label="LinkedIn de HFD Logistic Service" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+        <a href={SITE_INFO.social.instagram} aria-label="Instagram de HFD Logistic Service" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href={SITE_INFO.social.facebook} aria-label="Facebook de HFD Logistic Service" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-content">
+      <p>&copy; {currentYear} {SITE_INFO.name}. Todos los derechos reservados.</p>
+      <p class="tagline">Calidad • Eficiencia • Confiabilidad en Carga Aérea</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-root {
+    background-color: var(--bg-surface-elevated);
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+    padding-top: 4rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr;
+    gap: 3rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .footer-brand {
+    display: inline-block;
+  }
+
+  .footer-logo {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .footer-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 400px;
+  }
+
+  .footer-location {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .footer-location svg {
+    flex-shrink: 0;
+    color: var(--primary-color);
+    margin-top: 3px;
+  }
+
+  .footer-heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: var(--text-main);
+  }
+
+  .footer-links, .footer-contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-links a, .contact-link {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    transition: color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-links a:hover, .contact-link:hover {
+    color: var(--primary-color);
+  }
+
+  .contact-link svg {
+    color: var(--primary-color);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .social-links a {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+  }
+
+  .social-links a:hover {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding: 1.5rem 0;
+    background: var(--bg-surface);
+  }
+
+  .footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .tagline {
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+
+  @media (max-width: 860px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .footer-bottom-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

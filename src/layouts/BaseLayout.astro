@@ -1,0 +1,92 @@
+---
+import SEO from '@components/seo/SEO.astro';
+import SchemaOrg from '@components/seo/SchemaOrg.astro';
+import SkipLink from '@components/common/SkipLink.astro';
+import Header from '@components/common/Header.astro';
+import Footer from '@components/common/Footer.astro';
+import WhatsAppButton from '@components/common/WhatsAppButton.astro';
+import '@styles/global.css';
+import '@styles/animations.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  breadcrumbs?: Array<{ name: string; item: string }>;
+}
+
+const { title, description, image, breadcrumbs } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <SEO title={title} description={description} image={image} />
+    <SchemaOrg breadcrumbs={breadcrumbs} />
+    
+    <!-- Google Fonts Preconnect & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    
+    <!-- Inline script to prevent theme flash (FOUC) and persist dark/light mode -->
+    <script is:inline>
+      function applyTheme() {
+        const theme = (() => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+          }
+          return 'light';
+        })();
+        if (theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      }
+
+      applyTheme();
+      document.addEventListener('astro:after-swap', applyTheme);
+    </script>
+  </head>
+  <body>
+    <SkipLink />
+    <Header />
+    
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+    <WhatsAppButton />
+
+    <!-- Global Scroll Reveal Observer -->
+    <script>
+      function setupScrollReveal() {
+        const revealElements = document.querySelectorAll('.reveal:not(.active)');
+        if (!revealElements.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+      }
+
+      document.addEventListener('DOMContentLoaded', setupScrollReveal);
+      document.addEventListener('astro:page-load', setupScrollReveal);
+    </script>
+  </body>
+</html>

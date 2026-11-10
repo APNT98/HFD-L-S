@@ -1,0 +1,409 @@
+/* ==========================================================================
+   HFD LOGISTIC SERVICE - DESIGN SYSTEM & GLOBAL STYLES
+   Astro JS Modern Architecture - WCAG 2.1 AA Compliant
+   ========================================================================== */
+
+:root {
+  /* Brand Colors */
+  --primary-color: #2496d4;
+  --primary-hover: #1b7bb0;
+  --primary-glow: rgba(36, 150, 212, 0.25);
+  --accent-magenta: #e51a82;
+  --accent-magenta-hover: #c4136e;
+  --accent-magenta-glow: rgba(229, 26, 130, 0.25);
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+
+  /* Light Theme (Default) */
+  --bg-body: #ffffff;
+  --bg-surface: #f8fafc;
+  --bg-surface-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+  --border-color: #e2e8f0;
+  --border-color-hover: #cbd5e1;
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --nav-text: #0f172a;
+  
+  /* Shadows & Elevations */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+  --shadow-glow: 0 0 25px rgba(36, 150, 212, 0.25);
+
+  /* Radius & Transitions */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg-body: #0b1120;
+  --bg-surface: #0f172a;
+  --bg-surface-elevated: #1e293b;
+  --bg-card: #141e33;
+  --bg-card-hover: #1e293b;
+  --bg-glass: rgba(11, 17, 32, 0.85);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-inverse: #0f172a;
+  --border-color: #1e293b;
+  --border-color-hover: #334155;
+  --nav-bg: rgba(11, 17, 32, 0.85);
+  --nav-text: #f8fafc;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.45);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.55);
+  --shadow-glow: 0 0 30px rgba(36, 150, 212, 0.35);
+}
+
+/* ==========================================================================
+   CSS RESET & BASE
+   ========================================================================== */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Accessibility: Skip Link */
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 20px;
+  background: var(--primary-color);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  z-index: 9999;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 20px;
+  outline: 3px solid var(--accent-magenta);
+}
+
+/* Keyboard Focus Rings */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw + 1rem, 3.75rem);
+}
+
+h2 {
+  font-size: clamp(1.85rem, 3.5vw + 0.5rem, 2.75rem);
+}
+
+h3 {
+  font-size: clamp(1.35rem, 2vw + 0.5rem, 1.75rem);
+}
+
+p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+/* ==========================================================================
+   LAYOUT CONTAINERS & UTILITIES
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-padding {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.section-title {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+}
+
+.section-title h2 {
+  margin-bottom: 0.75rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-magenta));
+  border-radius: var(--radius-full);
+  margin: 0.75rem auto 0;
+}
+
+.section-title p {
+  font-size: 1.15rem;
+}
+
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* ==========================================================================
+   BUTTONS & CTAS
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-normal);
+  line-height: 1;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0 4px 14px 0 rgba(36, 150, 212, 0.39);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(36, 150, 212, 0.45);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background-color: var(--primary-glow);
+  transform: translateY(-2px);
+}
+
+.btn-magenta {
+  background-color: var(--accent-magenta);
+  color: #ffffff;
+  box-shadow: 0 4px 14px 0 rgba(229, 26, 130, 0.35);
+}
+
+.btn-magenta:hover {
+  background-color: var(--accent-magenta-hover);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 26, 130, 0.45);
+}
+
+/* ==========================================================================
+   CARDS & SURFACES
+   ========================================================================== */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  border-color: var(--border-color-hover);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+}
+
+.card-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  background: var(--primary-glow);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  transition: var(--transition-normal);
+}
+
+.card:hover .card-icon-wrapper {
+  background: var(--primary-color);
+  color: #ffffff;
+  transform: scale(1.08) rotate(3deg);
+}
+
+/* ==========================================================================
+   FORMS & INPUTS
+   ========================================================================== */
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.9rem 1.15rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-main);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: var(--transition-fast);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  background: var(--bg-body);
+  box-shadow: 0 0 0 4px var(--primary-glow);
+}
+
+.form-control[aria-invalid="true"] {
+  border-color: var(--danger-color);
+}
+
+.form-error {
+  display: none;
+  font-size: 0.85rem;
+  color: var(--danger-color);
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   TOAST / ALERT NOTIFICATIONS
+   ========================================================================== */
+
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.toast {
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-xl);
+  animation: slideUp 0.3s ease forwards;
+}
+
+.toast-success {
+  background: var(--success-color);
+  color: #ffffff;
+}
+
+.toast-error {
+  background: var(--danger-color);
+  color: #ffffff;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
